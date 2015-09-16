@@ -42,10 +42,15 @@ class TabWatcher
     return item._emberTabsGetTitle() unless pieces
     return item._emberTabsGetTitle() unless @isEmberPackagePath(filePath)
 
-    fileType = pieces.pop()
-    podName = pieces.pop()
+    podNamePieces = []
 
-    "#{podName}/#{fileType}"
+    fileType = pieces.pop()
+
+    # Iterate until we hit either the app/- or the components/-folder
+    while (podNamePiece = pieces.pop()) && podNamePiece not in ["app", "components", "pods"]
+      podNamePieces.unshift podNamePiece
+
+    "#{podNamePieces.join("/")}/#{fileType}"
 
   # TODO: Try to read `podModulePrefix`
   isEmberPackagePath: (filePath) =>
