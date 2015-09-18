@@ -10,7 +10,7 @@ Without `ember-tabs` you end up with a bunch of tabs all named `template.hbs` or
 
 Find it in the Atom package index:
 
-[https://atom.io/packages/pigments](https://atom.io/packages/pigments)
+[https://atom.io/packages/ember-tabs](https://atom.io/packages/ember-tabs)
 
 Or...
 
