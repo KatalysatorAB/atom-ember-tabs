@@ -8,7 +8,7 @@ Without `ember-tabs` you end up with a bunch of tabs all named `template.hbs` or
 
 ## Installation
 
-Find it in the Atom package index:
+Search for "ember-tabs" in `Install packages`. You can also find it in the Atom package index:
 
 [https://atom.io/packages/ember-tabs](https://atom.io/packages/ember-tabs)
 
