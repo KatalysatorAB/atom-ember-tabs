@@ -6,4 +6,18 @@ Without `ember-tabs` you end up with a bunch of tabs all named `template.hbs` or
 
 ![screenshot](http://i.imgur.com/PAsMJQP.png)
 
-## Currently very experimental, but should work.
+## Installation
+
+Find it in the Atom package index:
+
+[https://atom.io/packages/pigments](https://atom.io/packages/pigments)
+
+Or...
+
+### From source
+
+From source:
+
+    git clone https://github.com/KatalysatorAB/atom-ember-tabs.git
+    cd atom-ember-tabs
+    apm link

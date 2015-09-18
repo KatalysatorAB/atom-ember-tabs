@@ -1,14 +1,14 @@
 {
   "name": "ember-tabs",
   "main": "./lib/ember-tabs",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Makes Atom work better with Ember pods.",
   "keywords": [
     "ember",
     "ember pods"
   ],
   "activationHooks": [],
-  "repository": "https://github.com/erkie/ember-tabs",
+  "repository": "https://github.com/KatalysatorAB/atom-ember-tabs",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
