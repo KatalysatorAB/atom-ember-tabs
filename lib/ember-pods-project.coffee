@@ -1,4 +1,5 @@
 fs = require "fs"
+stripeJsonComments = require "../vendor/strip-json-comments"
 
 module.exports =
 class EmberPodsProject
@@ -18,7 +19,7 @@ class EmberPodsProject
             callback(false)
           else
             try
-              @emberCliSettings = JSON.parse(contents)
+              @emberCliSettings = JSON.parse(stripeJsonComments(contents.toString()))
             catch
               console.log "[ember-tabs] Invalid .ember-cli file"
               callback(false)
