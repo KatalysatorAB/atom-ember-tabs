@@ -13,7 +13,7 @@ class PodFilePane extends SelectListView
    @panel.hide()
 
  viewForItem: (item) ->
-   "<li>#{path.basename(item)}</li>"
+   "<li><span>#{path.basename(path.dirname(item))}/</span><strong>#{path.basename(item)}</strong></li>"
 
  confirmed: (item) ->
    atom.workspace.open(item)
