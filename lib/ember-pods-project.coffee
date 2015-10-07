@@ -25,9 +25,14 @@ class EmberPodsProject
               callback(false)
               return
 
-            callback @emberCliSettings["usePods"]
+            @readPodModulePrefix()
+            callback @emberCliSettings["usePods"], @podModulePrefix
       else
         callback(false)
 
   readPodModulePrefix: =>
     # read from config/environment.js podModulePrefix
+    try
+      @podModulePrefix = require("#{@rootPath}/config/environment")("development").podModulePrefix || "/app/"
+    catch
+      @podModulePrefix = '/app/'

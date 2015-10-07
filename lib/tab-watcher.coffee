@@ -1,6 +1,6 @@
 module.exports =
 class TabWatcher
-  constructor: ->
+  constructor: (@podModulePrefix) ->
     console.log "[ember-tabs] Shimming tabs..."
 
     atom.workspace.observeTextEditors =>
@@ -54,4 +54,4 @@ class TabWatcher
 
   # TODO: Try to read `podModulePrefix`
   isEmberPackagePath: (filePath) =>
-    filePath.indexOf("/app/") != -1
+    filePath.indexOf(@podModulePrefix) != -1
