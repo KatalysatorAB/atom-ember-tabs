@@ -37,4 +37,5 @@ class PodFilePane extends SelectListView
     componentFolder = path.dirname(onPath)
 
     fs.readdir componentFolder, (err, files) =>
-      @setItems files.map((file) => "#{componentFolder}/#{file}")
+      if files
+        @setItems files.map((file) => "#{componentFolder}/#{file}")
