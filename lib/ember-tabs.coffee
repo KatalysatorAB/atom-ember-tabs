@@ -21,9 +21,9 @@ module.exports =
       project = new EmberPodsProject path
       @projects.push project
 
-      project.isEmberPodsProject (yesOrNo) =>
+      project.isEmberPodsProject (yesOrNo, podModulePrefix) =>
         if yesOrNo
-          @tabWatcher = new TabWatcher() unless @tabWatcher
+          @tabWatcher = new TabWatcher(podModulePrefix) unless @tabWatcher
         else
           console.log "[ember-tabs] Did not detect ember project with pods enabled."
 
@@ -36,6 +36,5 @@ module.exports =
   openFilePane: ->
     activePath = atom.workspace.getActiveTextEditor().getPath()
 
-    # TODO: Move logic to check if path is a pod somewhere, since it's duplicated in `ember-pods-project`
-    if activePath.indexOf("/app/") != -1
+    if @tabWatcher.isEmberPackagePath(activePath)
       @podFilePane.toggle atom.workspace.getActiveTextEditor().getPath()
