@@ -12,6 +12,9 @@ class PodFilePane extends SelectListView
    @panel ?= atom.workspace.addModalPanel(item: this)
    @panel.hide()
 
+  destroy: =>
+    @remove()
+
  viewForItem: (item) ->
    "<li><span>#{path.basename(path.dirname(item))}/</span><strong>#{path.basename(item)}</strong></li>"
 

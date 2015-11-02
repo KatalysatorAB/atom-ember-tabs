@@ -3,9 +3,27 @@ class TabWatcher
   constructor: (@podModulePrefix) ->
     console.log "[ember-tabs] Shimming tabs..."
 
-    atom.workspace.observeTextEditors =>
+    @textEditorObserver = atom.workspace.observeTextEditors =>
       # Race condition, tab view not added before this callback is called
       setTimeout @updateTabTitles, 10
+      true
+
+  dispose: =>
+    @textEditorObserver.dispose()
+
+    tabPackage = atom.packages.getLoadedPackage("tabs")
+    for tabBar in tabPackage.mainModule.tabBarViews
+      for tab in tabBar.getTabs()
+        item = tab.item
+
+        if item._emberTabsGetTitle
+          item.getTitle = item._emberTabsGetTitle
+          item._emberTabsGetTitle = null
+
+        if item._emberTabsGetLongTitle
+          item.getLongTitle = item._emberTabsGetLongTitle
+          item._emberTabsGetLongTitle = null
+
 
   updateTabTitles: =>
     tabPackage = atom.packages.getLoadedPackage("tabs")
@@ -14,10 +32,9 @@ class TabWatcher
       setTimeout @updateTabTitles, 50
       return
 
-    tabBar = tabPackage.mainModule.tabBarViews[0]
-
-    for tab in tabBar.getTabs()
-      @updateTabTitle(tab)
+    for tabBar in tabPackage.mainModule.tabBarViews
+      for tab in tabBar.getTabs()
+        @updateTabTitle(tab)
 
   updateTabTitle: (tab) =>
     item = tab.item
@@ -39,8 +56,8 @@ class TabWatcher
     filePath = item.getPath()
     pieces = filePath?.split("/")
 
-    return item._emberTabsGetTitle() unless pieces
-    return item._emberTabsGetTitle() unless @isEmberPackagePath(filePath)
+    return item._emberTabsGetTitle() if !pieces || !pieces.length
+    return item._emberTabsGetTitle() if !@isEmberPackagePath(filePath)
 
     podNamePieces = []
 
@@ -52,6 +69,5 @@ class TabWatcher
 
     "#{podNamePieces.join("/")}/#{fileType}"
 
-  # TODO: Try to read `podModulePrefix`
   isEmberPackagePath: (filePath) =>
     filePath.indexOf(@podModulePrefix) != -1
