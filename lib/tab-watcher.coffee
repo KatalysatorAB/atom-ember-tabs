@@ -45,12 +45,12 @@ class TabWatcher
     item._emberTabsGetLongTitle = item.getLongTitle
 
     item.getTitle = =>
-      @getEmberPodName(item)
+      @getEmberPodName(item) || item._emberTabsGetTitle()
 
     item.getLongTitle = =>
-      @getEmberPodName(item)
+      @getEmberPodName(item) || item._emberTabsGetLongTitle()
 
-    item.emitter.emit "did-change-title", tab.item.getTitle()
+    item.emitter.emit "did-change-title", item.getTitle()
 
   getEmberPodName: (item) =>
     filePath = item.getPath()

@@ -47,6 +47,7 @@ module.exports =
 
       project.isEmberPodsProject (yesOrNo, podModulePrefix) =>
         if yesOrNo
+          console.log "[ember-tabs] Detected Ember project. #{podModulePrefix}."
           @tabWatchers.push new TabWatcher(podModulePrefix)
         else
           console.log "[ember-tabs] Did not detect ember project with pods enabled."
@@ -60,11 +61,10 @@ module.exports =
       PodFilePane = require './pod-file-pane'
       @podFilePane = new PodFilePane()
 
-    activePath = atom.workspace.getActiveTextEditor().getPath()
-
-    for tabWatcher in @tabWatchers
-      if tabWatcher.isEmberPackagePath(activePath) && activePath
-        @podFilePane.toggle atom.workspace.getActiveTextEditor().getPath()
-        return
-      else
-        console.log "[ember-tabs] Tried to open file pane. Open file pane failed."
+    if activePath = atom.workspace.getActiveTextEditor().getPath()
+      for tabWatcher in @tabWatchers
+        if tabWatcher.isEmberPackagePath(activePath)
+          @podFilePane.toggle activePath
+          return
+        else
+          console.log "[ember-tabs] Tried to open file pane. Open file pane failed."
