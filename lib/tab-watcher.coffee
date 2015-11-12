@@ -39,7 +39,7 @@ class TabWatcher
   updateTabTitle: (tab) =>
     item = tab.item
 
-    return if !item || !item.emitter || item._emberTabsGetTitle
+    return if !item || !item.emitter || item._emberTabsGetTitle || !@getEmberPodName(item)
 
     item._emberTabsGetTitle = item.getTitle
     item._emberTabsGetLongTitle = item.getLongTitle
@@ -56,8 +56,8 @@ class TabWatcher
     filePath = item.getPath()
     pieces = filePath?.split("/")
 
-    return item._emberTabsGetTitle() if !pieces || !pieces.length
-    return item._emberTabsGetTitle() if !@isEmberPackagePath(filePath)
+    return false if !pieces || !pieces.length
+    return false if !@isEmberPackagePath(filePath)
 
     podNamePieces = []
 
