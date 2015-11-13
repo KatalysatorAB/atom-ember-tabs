@@ -70,4 +70,9 @@ class TabWatcher
     "#{podNamePieces.join("/")}/#{fileType}"
 
   isEmberPackagePath: (filePath) =>
-    filePath.indexOf(@podModulePrefix) != -1
+    if filePath.indexOf(@podModulePrefix) != -1
+      console.log "[ember-tabs] filePath: #{filePath} WAS an ember package path! Checked against: #{@podModulePrefix}"
+      true
+    else
+      console.log "[ember-tabs] filePath: #{filePath} was not an ember package path. Checked against: #{@podModulePrefix}"
+      false
