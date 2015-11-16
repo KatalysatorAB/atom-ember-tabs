@@ -45,10 +45,10 @@ module.exports =
       project = new EmberPodsProject path
       @projects.push project
 
-      project.isEmberPodsProject (yesOrNo, podModulePrefix) =>
+      project.isEmberPodsProject (yesOrNo) =>
         if yesOrNo
-          console.log "[ember-tabs] Detected Ember project. #{podModulePrefix}."
-          @tabWatchers.push new TabWatcher(podModulePrefix)
+          console.log "[ember-tabs] Detected Ember project."
+          @tabWatchers.push new TabWatcher()
         else
           console.log "[ember-tabs] Did not detect ember project with pods enabled."
 

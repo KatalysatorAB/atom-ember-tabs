@@ -1,6 +1,8 @@
+POD_MODULE_PREFIX_SEARCH = /(app\/)|(pods\/)/
+
 module.exports =
 class TabWatcher
-  constructor: (@podModulePrefix) ->
+  constructor: ->
     console.log "[ember-tabs] Shimming tabs..."
 
     @textEditorObserver = atom.workspace.observeTextEditors =>
@@ -70,9 +72,9 @@ class TabWatcher
     "#{podNamePieces.join("/")}/#{fileType}"
 
   isEmberPackagePath: (filePath) =>
-    if filePath.indexOf(@podModulePrefix) != -1
-      console.log "[ember-tabs] filePath: #{filePath} WAS an ember package path! Checked against: #{@podModulePrefix}"
+    if POD_MODULE_PREFIX_SEARCH.test(filePath)
+      console.log "[ember-tabs] filePath: #{filePath} WAS an ember package path! Checked against regex."
       true
     else
-      console.log "[ember-tabs] filePath: #{filePath} was not an ember package path. Checked against: #{@podModulePrefix}"
+      console.log "[ember-tabs] filePath: #{filePath} was not an ember package path. Checked against regex."
       false
