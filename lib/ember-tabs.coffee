@@ -1,6 +1,8 @@
 {CompositeDisposable} = require 'atom'
 
 module.exports =
+  config: require('./config.coffee')
+
   tabWatchers: null
 
   activate: (state) ->
