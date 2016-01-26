@@ -11,6 +11,9 @@ class EmberPodsProject
   isEmberPodsProject: (callback) =>
     @checkDotEmberCliFile callback
 
+  getIgnorePods: () =>
+    return atom.config.get('ember-tabs.ignorePods')
+
   checkDotEmberCliFile: (callback) =>
     dotEmberCliFile = "#{@rootPath}/.ember-cli"
 
@@ -26,7 +29,7 @@ class EmberPodsProject
             callback(true)
           else
             console.log "[ember-tabs] Trying to parse the contents"
-            
+
             try
               @emberCliSettings = JSON.parse(stripeJsonComments(contents.toString()))
               console.log "[ember-tabs] Parsing worked great."
@@ -35,8 +38,10 @@ class EmberPodsProject
               callback(true)
               return
 
+            console.log "[ember-tabs] Everying read fine. Ignore usePods Config: #{@getIgnorePods()}"
             console.log "[ember-tabs] Everying read fine. Settings: #{@emberCliSettings["usePods"]}"
-            callback @emberCliSettings["usePods"]
+            activated = @getIgnorePods() || @emberCliSettings["usePods"]
+            callback activated
       else
         console.log "[ember-tabs] .ember-cli did not exist."
         callback(false)
