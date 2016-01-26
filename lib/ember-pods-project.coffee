@@ -11,8 +11,8 @@ class EmberPodsProject
   isEmberPodsProject: (callback) =>
     @checkDotEmberCliFile callback
 
-  getIgnorePods: () =>
-    return atom.config.get('ember-tabs.ignorePods')
+  shouldOverrideUsePods: =>
+    atom.config.get "ember-tabs.overrideUsePods"
 
   checkDotEmberCliFile: (callback) =>
     dotEmberCliFile = "#{@rootPath}/.ember-cli"
@@ -38,9 +38,9 @@ class EmberPodsProject
               callback(true)
               return
 
-            console.log "[ember-tabs] Everying read fine. Ignore usePods Config: #{@getIgnorePods()}"
+            console.log "[ember-tabs] Everying read fine. Ignore usePods config: #{@shouldOverrideUsePods()}"
             console.log "[ember-tabs] Everying read fine. Settings: #{@emberCliSettings["usePods"]}"
-            activated = @getIgnorePods() || @emberCliSettings["usePods"]
+            activated = @shouldOverrideUsePods() || @emberCliSettings["usePods"]
             callback activated
       else
         console.log "[ember-tabs] .ember-cli did not exist."
