@@ -55,7 +55,7 @@ class TabWatcher
     item.emitter.emit "did-change-title", item.getTitle()
 
   getEmberPodName: (item) =>
-    filePath = item.getPath().replace(/\\/g, '/')
+    filePath = item.getPath()?.replace(/\\/g, '/')
     pieces = filePath?.split("/")
 
     return false if !pieces || !pieces.length
