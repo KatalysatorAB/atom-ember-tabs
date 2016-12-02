@@ -7,7 +7,12 @@
     "ember",
     "ember pods"
   ],
-  "activationHooks": [],
+  "scripts": {
+    "lint": "$(npm bin)/jshint . --exclude node_modules"
+  },
+  "activationCommands": {
+    "atom-workspace": "ember-tabs:open-file-pane"
+  },
   "repository": "https://github.com/KatalysatorAB/atom-ember-tabs",
   "license": "MIT",
   "engines": {
@@ -15,5 +20,8 @@
   },
   "dependencies": {
     "atom-space-pen-views": "^2.1.0"
+  },
+  "devDependencies": {
+    "jshint": "^2.9.4"
   }
 }

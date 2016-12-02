@@ -1,7 +1,7 @@
 'use babel';
 
 import EmberTabs from '../lib/ember-tabs';
-
+console.log(EmberTabs);
 // Use the command `window:run-package-specs` (cmd-alt-ctrl-p) to run specs.
 //
 // To run a specific `it` or `describe` block add an `f` to the front (e.g. `fit`
