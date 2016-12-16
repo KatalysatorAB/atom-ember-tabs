@@ -1,0 +1,5 @@
+{
+  "atom-workspace": {
+    "cmd-shift-M": "ember-tabs:open-file-pane"
+  }
+}
