@@ -10,9 +10,6 @@
   "scripts": {
     "lint": "$(npm bin)/jshint . --exclude node_modules"
   },
-  "activationCommands": {
-    "atom-workspace": "ember-tabs:open-file-pane"
-  },
   "repository": "https://github.com/KatalysatorAB/atom-ember-tabs",
   "license": "MIT",
   "engines": {
