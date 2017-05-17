@@ -1,7 +1,7 @@
 {
   "name": "ember-tabs",
   "main": "./lib/ember-tabs",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "description": "Makes Atom work better with Ember pods.",
   "keywords": [
     "ember",
